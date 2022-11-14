@@ -1,7 +1,8 @@
 name: 'Discord webhook'
 on:
-  pull_request:
-    types: [opened]
+  push:
+    branches:
+      - 'challenge/**'
 
 jobs:
   add-reviews:
