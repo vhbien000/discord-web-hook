@@ -1,8 +1,7 @@
 name: 'Discord webhook'
 on:
   pull_request:
-    types:
-      - "opened"
+    types: ["opened"]
     # branches:
     #   - 'master'
   # push:
