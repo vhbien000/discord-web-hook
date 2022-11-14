@@ -1,7 +1,12 @@
 name: 'Discord webhook'
 on:
   pull_request:
-    types: [opened]
+    types: ["opened"]
+    # branches:
+    #   - 'master'
+  # push:
+  #   branches:
+  #     - challenge/**'
 
 jobs:
   add-reviews:
@@ -19,14 +24,13 @@ jobs:
           string: ${{ steps.split.outputs._1 }}
 
       - name: Get current time
-        uses: josStorer/get-current-time@v2
+        uses: josStorer/get-current-time@v2.0.2
         id: current-time
         with:
-          format: MMMM Do YYYY, h:mm a
-          utcOffset: '+07:00'
+          format: YYYYMMDD-HH
+          utcOffset: "+08:00"
 
       - name: Discord notification
-        if: steps.split.outputs._1 && steps.split.outputs._0 != 'fix' && steps.split.outputs._0 != 'chore' && steps.split.outputs._0 != 'docs'
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_USERNAME: Brainery
